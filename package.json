@@ -3,6 +3,7 @@
     "axios": "^0.19.2",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
-    "json2csv": "^4.5.4"
+    "json2csv": "^4.5.4",
+    "massive": "^6.2.0"
   }
 }
