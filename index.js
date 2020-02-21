@@ -1,5 +1,3 @@
-const express=require('express')
-const app=express()
 const path=require('path')
 require('dotenv').config()
 const csv=require('csvtojson')
@@ -8,15 +6,9 @@ const jsCsv=require('json2csv')
 const {MAPS_KEY}=process.env
 const axios=require('axios')
 
-app.listen(7000, ()=>{
-    console.log('listening on 7000')
-})  
-
-
 let file=path.resolve(__dirname, './data/addresses.csv')
 
 csv().fromFile(file).then(async (arr)=>{
-    console.log(arr)
 
     for(let i=0;i<arr.length;i++){
 
@@ -45,27 +37,10 @@ csv().fromFile(file).then(async (arr)=>{
             console.log('success')
         })
     } catch (error) {
-        console.log(error, 'faoeijfwaoiej')
+        console.log(error, 'error with writing file')
     }
-
-    return
-    
-
 })
 
-//get csv file 
-//parse csv into json 
 
-//parse json into regular array 
-
-//for each item, get geocode
-
-//add in geocode to item 
-
-//reverse parse into csv
-
-//save in data folder. 
-
-//yay! 
 
 
