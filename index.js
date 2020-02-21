@@ -2,7 +2,6 @@ const express=require('express')
 const app=express()
 const path=require('path')
 require('dotenv').config()
-const papa=require('papaparse')
 const csv=require('csvtojson')
 const fs=require('fs')
 const jsCsv=require('json2csv')
@@ -20,11 +19,15 @@ csv().fromFile(file).then(async (arr)=>{
     console.log(arr)
 
     for(let i=0;i<arr.length;i++){
+
+        if(arr[i]['Home Address 1'].includes('#')){
+            arr[i]['Home Address 1'].replace('#', ' ')
+        }
         await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${arr[i]['Home Address 1'].replace(' ', '+')}+${arr[i]['Home City'].replace(' ', '+')}+${arr[i]['Home State'].replace(' ', ',')}+${arr[i]['Home Zip']}&key=${MAPS_KEY}`).then(res=>{
             console.log(res.data.results[0].geometry.location.lat.toString())
             console.log(res.data.results[0].geometry.location.lng.toString())
             arr[i].latitude=res.data.results[0].geometry.location.lat.toString()
-            arr[i].longitude=res.data.results[0].geometry.location.lat.toString()
+            arr[i].longitude=res.data.results[0].geometry.location.lng.toString()
 
 
 
