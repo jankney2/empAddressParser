@@ -21,7 +21,7 @@ csv().fromFile(file).then(async (arr)=>{
     for(let i=0;i<arr.length;i++){
 
         if(arr[i]['Home Address 1'].includes('#')){
-            arr[i]['Home Address 1'].replace('#', ' ')
+            arr[i]['Home Address 1'].replace(/#/g, ' ')
         }
         await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${arr[i]['Home Address 1'].replace(' ', '+')}+${arr[i]['Home City'].replace(' ', '+')}+${arr[i]['Home State'].replace(' ', ',')}+${arr[i]['Home Zip']}&key=${MAPS_KEY}`).then(res=>{
             console.log(res.data.results[0].geometry.location.lat.toString())
