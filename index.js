@@ -11,6 +11,9 @@ let file=path.resolve(__dirname, './data/addresses.csv')
 
 csv().fromFile(file).then(async (arr)=>{
 
+
+
+
     for(let i=0;i<arr.length;i++){
 
         if(arr[i]['Home Address 1'].includes('#')){
@@ -22,7 +25,7 @@ csv().fromFile(file).then(async (arr)=>{
             arr[i].latitude=res.data.results[0].geometry.location.lat.toString()
             arr[i].longitude=res.data.results[0].geometry.location.lng.toString()
 
-
+//add in pestroutes ID getter here
 
         }).catch(err=>{
             console.log(err, 'error with geocoder', arr[i], i)
