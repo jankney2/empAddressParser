@@ -29,7 +29,7 @@ csv().fromFile(file).then(async (arr)=>{
 
 
         }).catch(err=>{
-            console.log(err, 'error with geocoder', arr[i])
+            console.log(err, 'error with geocoder', arr[i], i)
         })
     }
 
